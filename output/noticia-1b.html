@@ -1,0 +1,81 @@
+<div class="chart-container" style="position: relative; height:auto; width:100%">
+  <canvas id="line_chart_1" width="350" height="250"></canvas>
+</div>
+
+<script>
+  var ctx = document.getElementById("line_chart_1");
+  var line_chart_1 = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+      datasets: [{
+        label: 'Presupuesto',
+        data: [166566930, 121188550, 101513520, 52800230, 49058210, 42411750, 55449690, 50851820, 27641500, 27888890, 41599010],
+        borderColor: 'rgba(142, 229, 187, 1)',
+        backgroundColor: 'rgba(0,0,0,0)'
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Evolución del presupuesto del Programa de Lucha contra la Contaminación  y el Cambio climático',
+        fontSize: 16,
+        fontFamily: '"Work Sans",sans-serif'
+      },
+      legend: {
+        display: true,
+        labels: {
+          fontName: '"Work Sans",sans-serif',
+          fontSize: 13
+        }
+      },
+      layout: {
+        padding: {
+          bottom: 20
+        }
+      },
+
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            var value = tooltipItem.yLabel;
+            if (parseInt(value) >= 1000) {
+              return " " + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' €';
+            } else {
+              return '€' + value;
+            }
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            // max: 25,
+            fontFamily: '"Work Sans",sans-serif',
+            callback: function(label, index, labels) {
+              return label / 1000000 + ' ';
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Importe en milliones de euro',
+            fontFamily: '"Work Sans",sans-serif'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontFamily: '"Work Sans",sans-serif'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Año',
+            fontFamily: '"Work Sans",sans-serif'
+          }
+        }]
+      }
+    }
+  });
+
+</script>

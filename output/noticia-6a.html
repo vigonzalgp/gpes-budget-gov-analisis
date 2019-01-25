@@ -1,0 +1,106 @@
+<!-- ************************* Noticia 6a ************************* -->
+
+<p><strong>Presupuesto para políticas de gasto de Industria y Energía 2019</strong></p>
+
+<script src="https://d3plus.org/js/d3plus-hierarchy.v0.6.full.min.js" defer></script>
+<style>
+    #viz {
+        height: 500px;
+    }
+
+    .d3plus-viz-legend {
+        display: none;
+    }
+
+    .GraphGood {
+        color: #66cc00;
+    }
+
+    .GraphNeutral {
+        color: #868B86;
+    }
+
+</style>
+<div id="viz"></div>
+<div style="margin-bottom: 1em;">
+    <span class="GraphGood">&block;</span> Partidas presupuestarias para la transición energética<br />
+    <span class="GraphNeutral">&block;</span> Resto de partidas presupuestarias
+
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var data = [{
+            color: "#868B86",
+            id: "Varios Industria",
+            value: 128774880,
+            valueL: "128.774.880"
+        }, {
+            color: "#868B86",
+            id: "Reconversión e industrialización",
+            value: 879185000,
+            valueL: "879.185.000"
+        }, {
+            color: "#868B86",
+            id: "Explotación minera",
+            value: 249911550,
+            valueL: "249.911.550"
+        }, {
+            color: "#868B86 ",
+            id: "Seguridad nuclear",
+            value: 46478070,
+            valueL: "46.478.070"
+        }, {
+            color: "#66CC00",
+            id: "Desarrollo alternativo cuencas mineras carbón",
+            value: 43400000,
+            valueL: "43.400.000"
+        }, {
+            color: "#66CC00",
+            id: "Movilidad sostenible",
+            value: 67000000,
+            valueL: "67.000.000"
+        }, {
+            color: "#66CC00",
+            id: "Impulso Eficiencia y renovables",
+            value: 300000000,
+            valueL: "300.000.000"
+        }, {
+            color: "#868B86",
+            id: "Costes del sistema eléctrico",
+            value: 3818583000,
+            valueL: "3.818.583.000"
+        }, {
+            color: "#868B86",
+            id: "Otros Normativa y Servicios Generales",
+            value: 269936460,
+            valueL: "269.936.460"
+        }];
+        new d3plus.Treemap().data(data).groupBy(["id"]).select("#viz").shapeConfig({
+            fill: function(d) {
+                return d.color;
+            },
+            labelConfig: {
+                fontFamily: '"Work Sans",sans-serif',
+                fontMax: 20
+            }
+        }).tooltipConfig({
+            body: function(d) {
+                var table = "<table class='tooltip-table'>";
+                // table += "<tr><td class='title'>Year:</td><td class='data'>" + d.year + "</td></tr>";
+                table += "<tr><td class='title'>&euro;</td><td class='data'>" + d.valueL + "</td></tr>";
+                table += "</table>";
+                return table;
+            },
+            footer: function(d) {
+                return ""; // "<sub class='tooltip-footer'>Año 2018</sub>";
+            },
+            title: function(d) {
+                var txt = d.id;
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();;
+            }
+        }).sum("value").render();
+    });
+
+</script>
+
+<!-- ************************* Noticia 6a ************************* -->

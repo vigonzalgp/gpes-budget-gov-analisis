@@ -1,0 +1,86 @@
+<div class="chart-container" style="position: relative; height:auto; width:100%">
+  <canvas id="line_chart_1" width="350" height="250"></canvas>
+</div>
+
+<script>
+  var ctx = document.getElementById("line_chart_1");
+  var line_chart_1 = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [ 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+      datasets: [{
+        label: 'Iniciales Defensa',
+        data: [8255772260, 7694862260, 7156379770, 6316440520, 5937000040, 5745769970, 5767782710, 5787890450, 7638547940, 8455963720, 8865710250],
+        borderColor: 'rgba(255, 77, 22, 1)',
+        backgroundColor: 'rgba(0,0,0,0)',
+        borderDash: [5, 5]
+      }, {
+        label: 'Ejecutados Defensa',
+        data: [9741368540, 9154423600, 8560089000, 7411744460, 6913657660, 6776749400, 6853909250, 6899223800],
+        borderColor: 'rgba(255, 77, 22, 1)',
+        backgroundColor: 'rgba(0,0,0,0)'
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Evolución del presupuesto del Ministerio de Defensa',
+        fontSize: 16,
+        fontFamily: '"Work Sans",sans-serif'
+      },
+      legend: {
+        display: true,
+        labels: {
+          fontName: '"Work Sans",sans-serif',
+          fontSize: 13
+        }
+      },
+      layout: {
+        padding: {
+          bottom: 20
+        }
+      },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            var value = tooltipItem.yLabel;
+            if (parseInt(value) >= 1000) {
+              return " " + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' €';
+            } else {
+              return '€' + value;
+            }
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            // max: 25,
+            fontFamily: '"Work Sans",sans-serif',
+            callback: function(label, index, labels) {
+              return label / 1000000 + ' ';
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Importe en milliones de euro',
+            fontFamily: '"Work Sans",sans-serif'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontFamily: '"Work Sans",sans-serif'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Año',
+            fontFamily: '"Work Sans",sans-serif'
+          }
+        }]
+      }
+    }
+  });
+
+</script>

@@ -1,0 +1,92 @@
+<div class="chart-container" style="position: relative; height:auto; width:100%">
+  <canvas id="line_chart_1" width="350" height="250"></canvas>
+</div>
+
+<script>
+  var ctx = document.getElementById("line_chart_1");
+  var line_chart_1 = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+      datasets: [{
+        label: 'Gestión e infraestructura',
+        data: [1935968470, 1811214250, 1321192720, 1150854700, 1076231360, 1428585990, 1385471550, 1330689670, 1168889070, 1208897660, 1129407890],
+        borderColor: 'rgba(142, 229, 187, 1)',
+        backgroundColor: 'rgba(0,0,0,0)'
+      },{
+        label: 'Calidad y normativa',
+        data: [584981770, 471834570, 295340790, 220570410, 159076430, 156139500, 250331560, 218397360, 188212680, 182124390, 217367040],
+        borderColor: 'rgba(255, 160, 0, 1)',
+        backgroundColor: 'rgba(0,0,0,0)'
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Presupuesto para la calidad, gestión e infraestructura del agua (2009-2019)',
+        fontSize: 16,
+        fontFamily: '"Work Sans",sans-serif',
+        fontColor: '#212529'
+      },
+      legend: {
+        display: true,
+        labels: {
+          fontName: '"Work Sans",sans-serif',
+          fontColor: '#212529',
+          fontSize: 13
+        }
+      },
+      layout: {
+        padding: {
+          bottom: 20
+        }
+      },
+
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            var value = tooltipItem.yLabel;
+            if (parseInt(value) >= 1000) {
+              return " " + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' €';
+            } else {
+              return '€' + value;
+            }
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            // max: 25,
+            fontFamily: '"Work Sans",sans-serif',
+            fontColor: '#212529',
+            callback: function(label, index, labels) {
+              return label / 1000000 + ' ';
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Importe en milliones de euro',
+            fontFamily: '"Work Sans",sans-serif',
+            fontColor: '#212529'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontFamily: '"Work Sans",sans-serif',
+            fontColor: '#212529'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Año',
+            fontFamily: '"Work Sans",sans-serif',
+            fontColor: '#212529'
+          }
+        }]
+      }
+    }
+  });
+
+</script>

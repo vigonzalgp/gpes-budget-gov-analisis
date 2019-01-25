@@ -1,0 +1,74 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.2/dist/Chart.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.0.1" defer></script>
+<div class="chart-container" style="position: relative; height:auto; width:100%">
+    <canvas id="pie_chart_1" width="350" height="250"></canvas>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var ctx = document.getElementById("pie_chart_1").getContext("2d");
+        var pie_chart_1 = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [
+                        7273100,
+                        31392370
+                    ],
+                    backgroundColor: [
+                        'rgba(122, 189, 148, 1)',
+                        'rgba(255, 196, 167, 1)'
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: [
+                    'Protección sistemas litorales',
+                    'Paseos marítimos y arena playas',
+
+                ]
+            },
+            options: {
+                circumference: 2 * Math.PI,
+                rotation: -0.5 * Math.PI,
+                title: {
+                    display: true,
+                    text: 'Inversiones en protección de la costa e infraestructuras 2019',
+                    fontSize: 16,
+                    fontFamily: '"Work Sans",sans-serif',
+                    fontColor: '#212529',
+                    padding: 25
+                },
+                responsive: true,
+                legend: {
+                    display: true,
+                    fullWidth: false,
+                    position: 'bottom',
+                    labels: {
+                        fontName: '"Work Sans",sans-serif',
+                        fontColor: '#212529',
+                        fontSize: 13,
+                        padding: 30
+                    }
+                },
+                layout: {
+                    padding: {
+                        bottom: 20
+                    }
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data['datasets'][0]['data'][tooltipItem['index']];
+                            if (parseInt(value) >= 1000) {
+                                return " " + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' €';
+                            } else {
+                                return '€' + value;
+                            }
+                        }
+                    }
+                },
+            }
+        });
+    });
+
+</script>
