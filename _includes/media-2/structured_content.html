@@ -6,8 +6,24 @@
         height: 500px;
     }
 
+    .d3plus-viz-legend {
+        display: none;
+    }
+
+    .GraphGood {
+        color: #66cc00;
+    }
+
+    .GraphNeutral {
+        color: #868B86;
+    }
+
 </style>
 <div id="viz"></div>
+<div style="margin-bottom: 1em;">
+    <span class="GraphNeutral">&block;</span>
+    <span class="GraphGood">&block;</span>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
         var data = [{
@@ -16,22 +32,22 @@
             value: 128774880,
             valueL: "128.774.880"
         }, {
-            color: "#5B4A59",
+            color: "#868B86",
             id: "Reconversión e industrialización",
             value: 879185000,
             valueL: "879.185.000"
         }, {
-            color: "#FFC331",
+            color: "#868B86",
             id: "Explotación minera",
             value: 249911550,
             valueL: "249.911.550"
         }, {
-            color: "#D7D5A1 ",
+            color: "#868B86 ",
             id: "Seguridad nuclear",
             value: 46478070,
             valueL: "46.478.070"
         }, {
-            color: "#D7D5A1",
+            color: "#66CC00",
             id: "Desarrollo alternativo cuencas mineras carbón",
             value: 43400000,
             valueL: "43.400.000"
@@ -41,17 +57,17 @@
             value: 67000000,
             valueL: "67.000.000"
         }, {
-            color: "#66CC01",
+            color: "#66CC00",
             id: "Impulso Eficiencia y renovables",
             value: 300000000,
             valueL: "300.000.000"
         }, {
-            color: "#FFC4A7",
+            color: "#868B86",
             id: "Costes del sistema eléctrico",
             value: 3818583000,
             valueL: "3.818.583.000"
         }, {
-            color: "#48B9E5",
+            color: "#868B86",
             id: "Otros Normativa y Servicios Generales",
             value: 269936460,
             valueL: "269.936.460"
