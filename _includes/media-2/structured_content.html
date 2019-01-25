@@ -1,99 +1,85 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.0.1" defer></script>
-<div class="chart-container" lang="{{ site.data[page.lang_file].language }}" style="position: relative; height:auto; width:100%">
-  <canvas id="bar_chart_2" width="350" height="250"></canvas>
-</div>
+<p><strong>Presupuesto para políticas de gasto de Industria y Energía 2018</strong></p>
+
+<script src="https://d3plus.org/js/d3plus-hierarchy.v0.6.full.min.js" defer></script>
+<style>
+    #viz {
+        height: 500px;
+    }
+
+</style>
+<div id="viz"></div>
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var ctx = document.getElementById("bar_chart_2");
-    var bar_chart_2 = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: [
-            "{{ site.data[page.lang_file].media-2.months.january }}",
-            "{{ site.data[page.lang_file].media-2.months.february }}",
-            "{{ site.data[page.lang_file].media-2.months.march }}",
-            "{{ site.data[page.lang_file].media-2.months.april }}",
-            "{{ site.data[page.lang_file].media-2.months.may }}",
-            "{{ site.data[page.lang_file].media-2.months.june }}"],
-        datasets: [{
-            label: '{{ site.data[page.lang_file].media-2.dataset1 }}',
-            data: [8, 9, 10, 9, 12, 13],
-            backgroundColor: [
-              'rgba(255, 225, 159, 0.85)',
-              'rgba(255, 225, 159, 0.85)',
-              'rgba(255, 225, 159, 0.85)',
-              'rgba(255, 225, 159, 0.85)',
-              'rgba(255, 225, 159, 0.85)',
-              'rgba(255, 225, 159, 0.85)'
-            ]
-          },
-          {
-            label: '{{ site.data[page.lang_file].media-2.dataset2 }}',
-            data: [6, 19, 11, 8, 14, 11],
-            backgroundColor: [
-              'rgba(195, 224, 166, 0.85)',
-              'rgba(195, 224, 166, 0.85)',
-              'rgba(195, 224, 166, 0.85)',
-              'rgba(195, 224, 166, 0.85)',
-              'rgba(195, 224, 166, 0.85)',
-              'rgba(195, 224, 166, 0.85)'
-            ]
-          }
-
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: '{{ site.data[page.lang_file].media-2.title }}',
-          fontSize: 16,
-          fontFamily: '"Work Sans",sans-serif',
-          fontColor: '#212529'
-        },
-        legend: {
-          display: true,
-          labels: {
-            fontName: '"Work Sans",sans-serif',
-            fontColor: '#212529',
-            fontSize: 13
-          }
-        },
-        layout: {
-          padding: {
-            bottom: 20
-          }
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              fontFamily: '"Work Sans",sans-serif',
-              fontColor: '#212529'
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var data = [{
+            color: "#868B86",
+            id: "Varios Industria",
+            value: 152620000,
+            valueL: "152.620.000"
+        }, {
+            color: "#5B4A59",
+            id: "Reconversión e industrialización",
+            value: 871450000,
+            valueL: "871.450.000"
+        }, {
+            color: "#FFC331",
+            id: "Explotación minera",
+            value: 295690000,
+            valueL: "295.690.000"
+        }, {
+            color: "#D7D5A1 ",
+            id: "Seguridad nuclear",
+            value: 46880000,
+            valueL: "46.880.000"
+        }, {
+            color: "#D7D5A1",
+            id: "Desarrollo alternativo cuencas mineras carbón",
+            value: 32200000,
+            valueL: "32.200.000"
+        }, {
+            color: "#66CC00",
+            id: "Movilidad sostenible",
+            value: 66600000,
+            valueL: "66.600.000"
+        }, {
+            color: "#66CC01",
+            id: "Impulso Eficiencia y renovables",
+            value: 300000000,
+            valueL: "300.000.000"
+        }, {
+            color: "#FFC4A7",
+            id: "Costes del sistema eléctrico",
+            value: 3750100000,
+            valueL: "3.750.100.000"
+        }, {
+            color: "#48B9E5",
+            id: "Otros Normativa y Servicios Generales",
+            value: 252580000,
+            valueL: "252.580.000"
+        }];
+        new d3plus.Treemap().data(data).groupBy(["id"]).select("#viz").shapeConfig({
+            fill: function(d) {
+                return d.color;
             },
-            scaleLabel: {
-              display: true,
-              labelString: '{{ site.data[page.lang_file].media-2.yaxe }}',
-              fontFamily: '"Work Sans",sans-serif',
-              fontColor: '#212529'
+            labelConfig: {
+                fontFamily: '"Work Sans",sans-serif',
+                fontMax: 20
             }
-          }],
-          xAxes: [{
-            ticks: {
-              fontFamily: '"Work Sans",sans-serif',
-              fontColor: '#212529'
+        }).tooltipConfig({
+            body: function(d) {
+                var table = "<table class='tooltip-table'>";
+                // table += "<tr><td class='title'>Year:</td><td class='data'>" + d.year + "</td></tr>";
+                table += "<tr><td class='title'>&euro;</td><td class='data'>" + d.valueL + "</td></tr>";
+                table += "</table>";
+                return table;
             },
-            scaleLabel: {
-              display: true,
-              labelString: '{{ site.data[page.lang_file].media-2.xaxe }}',
-              fontFamily: '"Work Sans",sans-serif',
-              fontColor: '#212529'
+            footer: function(d) {
+                return ""; // "<sub class='tooltip-footer'>Año 2018</sub>";
+            },
+            title: function(d) {
+                var txt = d.id;
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();;
             }
-          }]
-        }
-      }
+        }).sum("value").render();
     });
-
-  });
 
 </script>
