@@ -1,8 +1,11 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.2/dist/Chart.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.0.1" defer></script>
 <div class="chart-container" style="position: relative; height:auto; width:100%">
   <canvas id="line_chart_1" width="350" height="250"></canvas>
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function(event) {
   var ctx = document.getElementById("line_chart_1");
   var line_chart_1 = new Chart(ctx, {
     type: 'line',
@@ -88,5 +91,5 @@
       }
     }
   });
-
+});
 </script>
