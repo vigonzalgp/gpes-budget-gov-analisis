@@ -36,9 +36,9 @@
 	.st29{fill:#FFA000;}
 	.st30{fill:#7C4833;}
 	.st31{fill:none;}
-	.st32{font-family:'Rubik-Medium';}
+	.st32{font-family:'Rubik'; font-weight: 500;}
 	.st33{font-size:31px;}
-	.st34{font-family:'WorkSans-SemiBold';}
+	.st34{font-family:'Work Sans'; font-weight: 600;}
 	.st35{font-size:23px;}
 	.st36{font-size:18px;}
 	.st37{fill:#7ABD94;stroke:#7ABD94;stroke-miterlimit:10;}

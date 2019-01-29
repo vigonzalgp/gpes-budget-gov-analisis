@@ -21,14 +21,14 @@
 	.st14{fill:#E17857;}
 	.st15{fill:#DD4E20;}
 	.st16{fill:none;}
-	.st17{font-family:'Rubik-Medium';}
+	.st17{font-family:'Rubik'; font-weight: 500;}
 	.st18{font-size:29px;}
 	.st19{font-size:30px;}
 	.st20{fill-rule:evenodd;clip-rule:evenodd;fill:#69AF2D;}
 	.st21{fill:none;stroke:#868B86;stroke-miterlimit:10;}
 	.st22{fill:#FFFFFF;stroke:#F6F7F6;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st23{fill:#2AB20B;}
-	.st24{font-family:'WorkSans-SemiBold';}
+	.st24{font-family:'Work Sans'; font-weight: 600;}
 	.st25{font-size:23px;}
 	.st26{fill:#FF4D16;}
 	.st27{fill:#59896A;}
